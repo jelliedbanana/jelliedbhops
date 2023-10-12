@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "jelliedbhops",
+	"version": "0.1.0",
+
+	"name": "jelliedbhops",
+	"description": "bhop mod ported to 1.19.2",
+	"authors": [
+		"jelliedbanana",
+		"Smol Fofa"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+
+	"license": "MIT",
+	"icon": "assets/jelliedbhops/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"smol.bhops.Bhops"
+		],
+		"modmenu": [
+			"smol.bhops.config.BhopsMenu"
+		]
+	},
+	"mixins": [
+		"jelliedbhops.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.23",
+		"minecraft": "~1.19.2",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
