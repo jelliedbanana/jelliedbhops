@@ -1,0 +1,8 @@
+{
+  "powers": [
+    "jelliedbhops:bhop"
+  ],
+  "icon": "minecraft:rabbit_foot",
+  "order": 1,
+  "impact": 3
+}

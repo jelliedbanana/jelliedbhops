@@ -1,5 +1,7 @@
-package smol.bhops.mixin;
+package com.jellied.jhop.mixin;
 
+import com.jellied.jhop.powers.PowerBhop;
+import io.github.apace100.apoli.component.PowerHolderComponent;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -10,17 +12,29 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import smol.bhops.config.BhopsConfig;
+import com.jellied.jhop.config.BhopsConfig;
 
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin {
     private BhopsConfig config = AutoConfig.getConfigHolder(BhopsConfig.class).getConfig();
 
+    boolean isBhopper() {
+        boolean hasBhop = false;
+        for (PowerBhop power : PowerHolderComponent.getPowers(MinecraftClient.getInstance().player, PowerBhop.class)) {
+            if (power.isActive()) {
+                hasBhop = true;
+                break;
+            }
+        }
+
+        return hasBhop;
+    }
+
     @Inject(method = "render", at = @At("TAIL"))
     public void render(MatrixStack matrixStack, float tickDelta, CallbackInfo ci) {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        if(config.showSpeed) {
+        if(config.showSpeed && isBhopper()) {
             String speedString = "";
 
             PlayerEntity player = MinecraftClient.getInstance().player;

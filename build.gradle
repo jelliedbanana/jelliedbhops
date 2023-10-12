@@ -16,6 +16,29 @@ repositories {
 	maven { url = "https://minecraft.curseforge.com/api/maven" }
 	maven { url = "https://maven.terraformersmc.com/" }
 	maven { url = "https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api" }
+
+	maven {
+		url "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+	maven {
+		url "https://jitpack.io"
+	}
+	maven {
+		url "https://maven.terraformersmc.com/"
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = 'https://maven.ladysnake.org/releases'
+	}
+	maven {
+		url = 'https://maven.cafeteria.dev'
+		content {
+			includeGroup 'net.adriantodt.fabricmc'
+		}
+	}
 }
 
 dependencies {
@@ -40,6 +63,8 @@ dependencies {
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
+
+	modImplementation "com.github.apace100:origins-fabric:${project.origins_version}"
 }
 
 processResources {

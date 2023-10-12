@@ -1,9 +1,9 @@
-package smol.bhops.config;
+package com.jellied.jhop.config;
 
+import com.jellied.jhop.Bhops;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
-import smol.bhops.Bhops;
 
 @Config(name = Bhops.MOD_ID)
 public class BhopsConfig implements ConfigData {

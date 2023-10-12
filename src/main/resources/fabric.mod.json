@@ -3,8 +3,8 @@
 	"id": "jelliedbhops",
 	"version": "0.1.0",
 
-	"name": "jelliedbhops",
-	"description": "bhop mod ported to 1.19.2",
+	"name": "jhops",
+	"description": "bhop mod made for use with origins kinda idk",
 	"authors": [
 		"jelliedbanana",
 		"Smol Fofa"
@@ -19,10 +19,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"smol.bhops.Bhops"
+			"com.jellied.jhop.Bhops"
 		],
 		"modmenu": [
-			"smol.bhops.config.BhopsMenu"
+			"com.jellied.jhop.config.BhopsMenu"
 		]
 	},
 	"mixins": [

@@ -1,9 +1,9 @@
-package smol.bhops.config;
+package com.jellied.jhop.config;
 
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import smol.bhops.Bhops;
+import com.jellied.jhop.Bhops;
 
 public class BhopsMenu implements ModMenuApi {
     @Override

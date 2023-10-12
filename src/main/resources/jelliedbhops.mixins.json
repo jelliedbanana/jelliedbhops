@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "smol.bhops.mixin",
+	"package": "com.jellied.jhop.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
 		"LivingEntityMixin"

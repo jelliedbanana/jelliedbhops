@@ -1,11 +1,15 @@
-package smol.bhops.mixin;
+package com.jellied.jhop.mixin;
 
+import com.jellied.jhop.powers.PowerBhop;
+import io.github.apace100.apoli.component.PowerHolderComponent;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -15,7 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import smol.bhops.config.BhopsConfig;
+import com.jellied.jhop.config.BhopsConfig;
 
 //Reference Functions from Source:
 //FullWalkMove( )
@@ -56,7 +60,7 @@ public abstract class LivingEntityMixin extends Entity {
         //Toggle Bhops
         if (!config.enableBhops) { return; }
         //Enable for Players only
-        if (config.exclusiveToPlayers && this.getType() != EntityType.PLAYER) { return; }
+        if (this.getType() != EntityType.PLAYER) { return; }
 
         if (!this.canMoveVoluntarily() && !this.isLogicalSideForUpdatingMovement()) { return; }
 
@@ -65,9 +69,22 @@ public abstract class LivingEntityMixin extends Entity {
 
         //I don't have a better clue how to do this atm.
         LivingEntity self = (LivingEntity) (Object) this;
+        PlayerEntity plr = (PlayerEntity) self;
+        if (isFlying(plr)) {
+            return;
+        }
 
-        //Disable on creative flying.
-        if (this.getType() == EntityType.PLAYER && isFlying((PlayerEntity) self)) { return; }
+        boolean hasBhop = false;
+        for (PowerBhop power : PowerHolderComponent.getPowers(self, PowerBhop.class)) {
+            if (power.isActive()) {
+                hasBhop = true;
+                break;
+            }
+        }
+
+        if (!hasBhop) {
+            return;
+        }
 
         //Reverse multiplication done by the function that calls this one.
         this.sidewaysSpeed /= 0.98F;
